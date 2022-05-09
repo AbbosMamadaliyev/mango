@@ -77,9 +77,6 @@ class _QRCodePageState extends State<QRCodePage> {
                       width: size.width * 0.6,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        /* gradient: const LinearGradient(
-                          colors: [AppColors.orangeLight, AppColors.redOrange],
-                        ),*/
                         color: AppColors.orangeLight,
                         borderRadius: BorderRadius.circular(12),
                       ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mango/presentation/qr_code_page/qr_code_page.dart';
 
-import '../constanta_widgets/custom_app_bar.dart';
+import '../../constanta_widgets/custom_app_bar.dart';
+import '../../profile_info_page/profile_info_page.dart';
 
 class ProfilePageBody extends StatefulWidget {
   const ProfilePageBody({Key? key}) : super(key: key);
@@ -40,7 +41,10 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => QRCodePage()));
             }),
-            _buildListTile('Персональные данные', Icons.person_outline, () {}),
+            _buildListTile('Персональные данные', Icons.person_outline, () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ProfileInfoPage()));
+            }),
             _buildListTile('Уведомления', Icons.notifications_none, () {}),
             _buildListTile('Изменить язык', Icons.language, () {}),
             _buildListTile(

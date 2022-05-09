@@ -20,7 +20,7 @@ PreferredSize buildPreferredSize(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             leftChildWidget,
-            SizedBox(width: size.width * 0.2),
+            SizedBox(width: size.width * 0.18),
             Text(
               title,
               textAlign: TextAlign.center,
@@ -30,7 +30,7 @@ PreferredSize buildPreferredSize(
                 color: Colors.white,
               ),
             ),
-            SizedBox(width: size.width * 0.2),
+            SizedBox(width: size.width * 0.18),
             rightChildWidget,
           ],
         ),
