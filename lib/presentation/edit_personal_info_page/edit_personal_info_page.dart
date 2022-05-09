@@ -47,6 +47,8 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
                 onTap: () {
                   // --> func
                   // commit
+
+                  //'/'
                 },
                 child: Container(
                   height: size.height * 0.072,
