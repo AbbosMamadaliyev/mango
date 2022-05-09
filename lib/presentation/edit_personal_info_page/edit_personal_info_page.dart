@@ -46,9 +46,6 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
               GestureDetector(
                 onTap: () {
                   // --> func
-                  // commit
-
-                  //'/'
                 },
                 child: Container(
                   height: size.height * 0.072,
