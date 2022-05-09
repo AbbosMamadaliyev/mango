@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:mango/core/app_colors.dart';
 import 'package:mango/presentation/add_profile_page/add_profile_page.dart';
 import 'package:mango/presentation/home_page/home_page.dart';
+import 'package:mango/presentation/main_screen/main_screen_model.dart';
 import 'package:mango/presentation/pay_page/pay_page.dart';
 import 'package:mango/presentation/profile_page/profile_page.dart';
+import 'package:mango/presentation/registration_page/ragistration_page.dart';
+import 'package:provider/provider.dart';
 
 import '../scanner_page/scanner_page.dart';
 
@@ -17,19 +20,19 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _bottomNavIndex = 0;
+  bool isLogin = false;
 
-  List<Widget> bodies = [
-    HomePage(),
-    AddProfilePage(),
-    PayPage(),
-    ProfilePage(),
-    ScannerPage(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+
+    // isLogin =
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: bodies[_bottomNavIndex],
+      body: bodies()[_bottomNavIndex],
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () {
@@ -64,4 +67,16 @@ class _MainScreenState extends State<MainScreen> {
     Icons.account_balance_wallet_outlined,
     Icons.person_outline,
   ];
+
+  List<Widget> bodies() {
+    var log = context.watch<MainScreenModel>().isRegister;
+
+    return [
+      HomePage(),
+      AddProfilePage(),
+      PayPage(),
+      log ? ProfilePage() : RegistrationPage(),
+      ScannerPage(),
+    ];
+  }
 }
