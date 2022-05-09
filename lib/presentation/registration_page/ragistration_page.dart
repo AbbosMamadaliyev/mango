@@ -25,6 +25,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         context,
         rightChildWidget: SizedBox.shrink(),
         leftChildWidget: SizedBox.shrink(),
+        title: 'Регистрация',
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),

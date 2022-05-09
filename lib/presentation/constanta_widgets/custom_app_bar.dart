@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_colors.dart';
 
-PreferredSize buildPreferredSize(BuildContext context,
-    {required Widget leftChildWidget, required Widget rightChildWidget}) {
+PreferredSize buildPreferredSize(
+  BuildContext context, {
+  required Widget leftChildWidget,
+  required Widget rightChildWidget,
+  required String title,
+}) {
   final size = MediaQuery.of(context).size;
 
   return PreferredSize(
@@ -17,10 +21,10 @@ PreferredSize buildPreferredSize(BuildContext context,
           children: [
             leftChildWidget,
             SizedBox(width: size.width * 0.2),
-            const Text(
-              'Регистрация ',
+            Text(
+              title,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
