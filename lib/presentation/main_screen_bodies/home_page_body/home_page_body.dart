@@ -12,7 +12,10 @@ class _HomePageBodyState extends State<HomePageBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('home'),
+        child: ElevatedButton(
+          onPressed: () {},
+          child: Text('click'),
+        ),
       ),
     );
   }
