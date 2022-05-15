@@ -17,10 +17,10 @@ PreferredSize buildPreferredSize(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             leftChildWidget,
-            SizedBox(width: size.width * 0.18),
+            // SizedBox(width: size.width * 0.18),
             Text(
               title,
               textAlign: TextAlign.center,
@@ -30,7 +30,7 @@ PreferredSize buildPreferredSize(
                 color: Colors.white,
               ),
             ),
-            SizedBox(width: size.width * 0.18),
+            // SizedBox(width: size.width * 0.18),
             rightChildWidget,
           ],
         ),

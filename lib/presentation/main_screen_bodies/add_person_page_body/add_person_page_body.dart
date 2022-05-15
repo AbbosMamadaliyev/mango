@@ -41,7 +41,7 @@ class _AddPersonPageBodyState extends State<AddPersonPageBody> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: size.width * 0.5,
+                    width: size.width * 0.45,
                     child: TextField(),
                   ),
                   IconButton(
@@ -57,7 +57,7 @@ class _AddPersonPageBodyState extends State<AddPersonPageBody> {
                     },
                     child: Container(
                       height: size.height * 0.06,
-                      width: size.width * 0.3,
+                      width: size.width * 0.33,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: AppColors.orangeLight,

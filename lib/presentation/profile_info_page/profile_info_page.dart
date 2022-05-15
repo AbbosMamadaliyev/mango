@@ -29,7 +29,7 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
             color: Colors.white,
           ),
         ),
-        title: ' Персональные данные',
+        title: 'Персональные данные',
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
