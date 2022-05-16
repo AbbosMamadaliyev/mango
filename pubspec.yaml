@@ -38,6 +38,7 @@ dependencies:
   convex_bottom_bar:
   mask_text_input_formatter: ^2.3.0
   provider:
+  flutter_svg:
 
 
 dev_dependencies:
@@ -66,6 +67,7 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
+    - assets/icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
