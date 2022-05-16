@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mango/presentation/qr_code_page/qr_code_page.dart';
 
 import '../../change_language_page/change_language_page.dart';
+import '../../change_theme_page/change_theme_page.dart';
 import '../../constanta_widgets/custom_app_bar.dart';
+import '../../info_about_app_page/info_about_app_page.dart';
 import '../../notifications_page/notifications_page.dart';
 import '../../profile_info_page/profile_info_page.dart';
+import '../../public_offer_page/public_offer_page.dart';
 
 class ProfilePageBody extends StatefulWidget {
   const ProfilePageBody({Key? key}) : super(key: key);
@@ -55,11 +58,18 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ChangeLanguagePage()));
             }),
-            _buildListTile(
-                'Оформление', Icons.app_registration_outlined, () {}),
-            _buildListTile(
-                'Публичная оферта', Icons.local_offer_outlined, () {}),
-            _buildListTile('О приложении', Icons.info_outline, () {}),
+            _buildListTile('Оформление', Icons.app_registration_outlined, () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ChangeThemePage()));
+            }),
+            _buildListTile('Публичная оферта', Icons.local_offer_outlined, () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => PublicOfferPage()));
+            }),
+            _buildListTile('О приложении', Icons.info_outline, () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => InfoAboutAppPage()));
+            }),
           ],
         ),
       ),
