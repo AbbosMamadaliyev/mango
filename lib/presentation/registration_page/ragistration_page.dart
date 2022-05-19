@@ -98,9 +98,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               margin: const EdgeInsets.only(top: 32),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [AppColors.orangeLight, AppColors.redOrange],
-                ),
+                color: AppColors.orangeLight,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Text(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/app_colors.dart';
+import '../../domain/dataproviders/theme_data_provider.dart';
 import '../constanta_widgets/custom_app_bar.dart';
 
 class EditPersonalInfoPage extends StatefulWidget {
@@ -50,7 +52,7 @@ class _EditPersonalInfoPageState extends State<EditPersonalInfoPage> {
                 child: Container(
                   height: size.height * 0.072,
                   width: size.width,
-                  margin: EdgeInsets.only(top: size.height * 0.08),
+                  margin: EdgeInsets.only(top: size.height * 0.08, bottom: 16),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: AppColors.orangeLight,
@@ -81,6 +83,8 @@ class EditInfoFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final model = context.watch<PreferenceService>();
+    final isDark = model.isDark;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,12 +104,13 @@ class EditInfoFormWidget extends StatelessWidget {
             decoration: InputDecoration(
               hintText: title,
               border: InputBorder.none,
-              hintStyle: const TextStyle(color: Colors.black38),
+              hintStyle:
+                  TextStyle(color: isDark ? Colors.white60 : Colors.black38),
             ),
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: const Color(0xffefebee),
+            color: isDark ? const Color(0xff5a5a5c) : const Color(0xffefebee),
           ),
         ),
       ],

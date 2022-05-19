@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/app_colors.dart';
+import '../../domain/dataproviders/theme_data_provider.dart';
 import '../constanta_widgets/bottom_nav_bar/bottom_nav_bar_model.dart';
 import '../constanta_widgets/custom_app_bar.dart';
 
@@ -19,6 +20,8 @@ class _QRCodePageState extends State<QRCodePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     var _bottomNavIndex = context.watch<BottomNavBarModel>().bottomNavIndex;
+    final model = context.watch<PreferenceService>();
+    final isDark = model.isDark;
 
     return Scaffold(
       appBar: buildPreferredSize(
@@ -61,15 +64,18 @@ class _QRCodePageState extends State<QRCodePage> {
                       child: TextField(
                         controller: numberController,
                         textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           hintText: 'Номер стола',
                           border: InputBorder.none,
-                          hintStyle: TextStyle(color: Colors.black38),
+                          hintStyle: TextStyle(
+                              color: isDark ? Colors.white60 : Colors.black38),
                         ),
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color: const Color(0xffefebee),
+                        color: isDark
+                            ? const Color(0xff5a5a5c)
+                            : const Color(0xffefebee),
                       ),
                     ),
                     Container(

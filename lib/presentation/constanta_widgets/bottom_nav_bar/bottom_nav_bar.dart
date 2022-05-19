@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/app_colors.dart';
+import '../../../domain/dataproviders/theme_data_provider.dart';
 import 'bottom_nav_bar_model.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
@@ -18,11 +19,13 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
   @override
   Widget build(BuildContext context) {
     var _bottomNavIndex = context.watch<BottomNavBarModel>().bottomNavIndex;
+    final model = context.watch<PreferenceService>();
+    final isDark = model.isDark;
 
     return Scaffold(
       body: widget.body,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
+        backgroundColor: isDark ? Colors.black38 : Colors.white,
         onPressed: context.read<BottomNavBarModel>().onPressed,
         child: Icon(
           Icons.qr_code_scanner,
@@ -33,6 +36,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
         icons: iconList,
+        backgroundColor: isDark ? Colors.black38 : Colors.white,
         activeIndex: _bottomNavIndex,
         activeColor: AppColors.orange,
         inactiveColor: Colors.grey,

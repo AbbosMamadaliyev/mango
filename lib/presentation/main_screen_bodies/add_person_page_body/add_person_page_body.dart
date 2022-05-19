@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/app_colors.dart';
+import '../../../domain/dataproviders/theme_data_provider.dart';
 import '../../constanta_widgets/custom_app_bar.dart';
 
 class AddPersonPageBody extends StatefulWidget {
@@ -15,6 +17,8 @@ class _AddPersonPageBodyState extends State<AddPersonPageBody> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final model = context.watch<PreferenceService>();
+    final isDark = model.isDark;
 
     return Scaffold(
       appBar: buildPreferredSize(
@@ -81,7 +85,9 @@ class _AddPersonPageBodyState extends State<AddPersonPageBody> {
                 margin: EdgeInsets.only(top: size.height * 0.1),
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: const Color(0xffece8ec),
+                  color: isDark
+                      ? const Color(0xff5a5a5c)
+                      : const Color(0xffece8ec),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(

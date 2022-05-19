@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mango/presentation/qr_code_page/qr_code_page.dart';
+import 'package:provider/provider.dart';
 
+import '../../../domain/dataproviders/theme_data_provider.dart';
 import '../../change_language_page/change_language_page.dart';
 import '../../change_theme_page/change_theme_page.dart';
 import '../../constanta_widgets/custom_app_bar.dart';
@@ -19,6 +21,9 @@ class ProfilePageBody extends StatefulWidget {
 class _ProfilePageBodyState extends State<ProfilePageBody> {
   @override
   Widget build(BuildContext context) {
+    final model = context.watch<PreferenceService>();
+    final isDark = model.isDark;
+
     return Scaffold(
       appBar: buildPreferredSize(
         context,
@@ -42,48 +47,94 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
                 ),
               ),
             ),
-            _buildListTile('QR code', Icons.qr_code_scanner, () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => QRCodePage()));
-            }),
-            _buildListTile('Персональные данные', Icons.person_outline, () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ProfileInfoPage()));
-            }),
-            _buildListTile('Уведомления', Icons.notifications_none, () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => NotificationPage()));
-            }),
-            _buildListTile('Изменить язык', Icons.language, () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ChangeLanguagePage()));
-            }),
-            _buildListTile('Оформление', Icons.app_registration_outlined, () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ChangeThemePage()));
-            }),
-            _buildListTile('Публичная оферта', Icons.local_offer_outlined, () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => PublicOfferPage()));
-            }),
-            _buildListTile('О приложении', Icons.info_outline, () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => InfoAboutAppPage()));
-            }),
+            _buildListTile(
+              'QR code',
+              Icons.qr_code_scanner,
+              () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => QRCodePage()));
+              },
+              isDark,
+            ),
+            _buildListTile(
+              'Персональные данные',
+              Icons.person_outline,
+              () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ProfileInfoPage()));
+              },
+              isDark,
+            ),
+            _buildListTile(
+              'Уведомления',
+              Icons.notifications_none,
+              () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => NotificationPage()));
+              },
+              isDark,
+            ),
+            _buildListTile(
+              'Изменить язык',
+              Icons.language,
+              () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ChangeLanguagePage()));
+              },
+              isDark,
+            ),
+            _buildListTile(
+              'Оформление',
+              Icons.app_registration_outlined,
+              () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ChangeThemePage()));
+              },
+              isDark,
+            ),
+            _buildListTile(
+              'Публичная оферта',
+              Icons.local_offer_outlined,
+              () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => PublicOfferPage()));
+              },
+              isDark,
+            ),
+            _buildListTile(
+              'О приложении',
+              Icons.info_outline,
+              () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => InfoAboutAppPage()));
+              },
+              isDark,
+            ),
           ],
         ),
       ),
     );
   }
 
-  ListTile _buildListTile(String title, IconData icon, void Function() func) {
+  ListTile _buildListTile(
+    String title,
+    IconData icon,
+    void Function() func,
+    bool isDark,
+  ) {
     return ListTile(
       onTap: func,
-      leading: Icon(icon, color: Colors.black),
-      trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black),
+      leading: Icon(icon, color: isDark ? Colors.white : Colors.black),
+      trailing: Icon(
+        Icons.arrow_forward_ios,
+        color: isDark ? Colors.white : Colors.black,
+      ),
       title: Text(
         title,
-        style: const TextStyle(fontSize: 16, color: Colors.black),
+        style: TextStyle(
+          fontSize: 16,
+          color: isDark ? Colors.white : Colors.black,
+        ),
       ),
     );
   }

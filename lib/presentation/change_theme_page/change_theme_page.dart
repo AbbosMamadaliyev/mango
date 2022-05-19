@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../domain/dataproviders/theme_data_provider.dart';
 import '../constanta_widgets/custom_app_bar.dart';
 
 class ChangeThemePage extends StatefulWidget {
@@ -12,6 +14,9 @@ class ChangeThemePage extends StatefulWidget {
 class _ChangeThemePageState extends State<ChangeThemePage> {
   @override
   Widget build(BuildContext context) {
+    final model = context.watch<PreferenceService>();
+    final isDark = model.isDark;
+
     return Scaffold(
       appBar: buildPreferredSize(
         context,
@@ -32,8 +37,13 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
         child: Column(
           children: [
             SwitchListTile(
-              value: false,
-              onChanged: (value) {},
+              value: !model.darkMode,
+              onChanged: (val) {
+                print(val);
+                model.darkMode = !val;
+                model.setThemeMode(model.darkMode);
+                model.setTheme.add(model.darkMode);
+              },
               title: Text(
                 'Светлая',
                 style: TextStyle(
@@ -43,8 +53,12 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
               ),
             ),
             SwitchListTile(
-              value: false,
-              onChanged: (value) {},
+              value: model.darkMode,
+              onChanged: (val) {
+                model.darkMode = val;
+                model.setThemeMode(model.darkMode);
+                model.setTheme.add(model.darkMode);
+              },
               title: Text(
                 'Темная',
                 style: TextStyle(
