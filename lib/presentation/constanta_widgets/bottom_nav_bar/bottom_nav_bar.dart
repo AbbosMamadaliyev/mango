@@ -1,5 +1,6 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/app_colors.dart';
@@ -22,29 +23,34 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     final model = context.watch<PreferenceService>();
     final isDark = model.isDark;
 
-    return Scaffold(
-      body: widget.body,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: isDark ? Colors.black38 : Colors.white,
-        onPressed: context.read<BottomNavBarModel>().onPressed,
-        child: Icon(
-          Icons.qr_code_scanner,
-          color: _bottomNavIndex == 4 ? AppColors.orange : Colors.grey,
-          size: 32,
+    return KeyboardVisibilityBuilder(
+        builder: (BuildContext context, bool isKeyboardVisible) {
+      return Scaffold(
+        body: widget.body,
+        floatingActionButton: isKeyboardVisible
+            ? null
+            : FloatingActionButton(
+                backgroundColor: isDark ? Colors.black38 : Colors.white,
+                onPressed: context.read<BottomNavBarModel>().onPressed,
+                child: Icon(
+                  Icons.qr_code_scanner,
+                  color: _bottomNavIndex == 4 ? AppColors.orange : Colors.grey,
+                  size: 32,
+                ),
+              ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: AnimatedBottomNavigationBar(
+          icons: iconList,
+          backgroundColor: isDark ? Colors.black38 : Colors.white,
+          activeIndex: _bottomNavIndex,
+          activeColor: AppColors.orange,
+          inactiveColor: Colors.grey,
+          gapLocation: GapLocation.center,
+          notchSmoothness: NotchSmoothness.defaultEdge,
+          onTap: context.read<BottomNavBarModel>().onTap,
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        icons: iconList,
-        backgroundColor: isDark ? Colors.black38 : Colors.white,
-        activeIndex: _bottomNavIndex,
-        activeColor: AppColors.orange,
-        inactiveColor: Colors.grey,
-        gapLocation: GapLocation.center,
-        notchSmoothness: NotchSmoothness.defaultEdge,
-        onTap: context.read<BottomNavBarModel>().onTap,
-      ),
-    );
+      );
+    });
   }
 
   List<IconData> iconList = [
